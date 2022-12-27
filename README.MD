@@ -1,4 +1,4 @@
-Creacion de un pequeño programa para practicar el manejo de consola creando un CLI utilizado para hacer busquedas de ubicaciones mediante el api de MAPBOX.
+Creacion de un pequeño programa para practicar el manejo de consola creando un CLI utilizado para hacer busquedas de ubicaciones mediante el api de MAPBOX y haciendo uso del API de OpenWeather para la ubicacion del clima.
 
 ```
 Para ejecutar el programa con lo basico, solo hay que utilizar el comando: 
