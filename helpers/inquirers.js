@@ -100,7 +100,7 @@ const inquirerMenu = async () => {
     console.clear();
     console.log('========================='.green);
     console.log('  Seleccione una opción'.blue);
-    console.log('========================='.green);
+    console.log('=========================\n'.green);
 
     const { opcion } = await inquirer.prompt(preguntas)
     return opcion;
@@ -148,10 +148,10 @@ const leerInput = async (message) => {
 
 module.exports = {
     listarLugares,
+    leerInput,
 
     inquirerMenu,
     pausa,
-    leerInput,
     confirmar,
     mostrarListadoCheckList
 }
