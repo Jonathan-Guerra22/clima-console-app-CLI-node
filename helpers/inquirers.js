@@ -19,6 +19,10 @@ const preguntas = [
                 name: `${'2.'.green} Historial`
             },
             {
+                value: 3,
+                name: `${'3.'.green} Borrar del historial`
+            },
+            {
                 value: 0,
                 name: `${'0.'.green} Salir`
             },
@@ -56,14 +60,14 @@ const listarLugares = async (lugares) => {
 }
 
 
-const mostrarListadoCheckList = async (tareas) => {
+const mostrarListadoCheckList = async (historialList) => {
 
-    const choices = tareas.map((tarea, i) => {
-        const idx = `${i + 1}`.green
+    const choices = historialList.map((historial, i) => {
+        const idx = `${i + 1}.`.green
         return {
-            value: tarea.id,
-            name: `${idx} ${tarea.desc}`,
-            checked: tarea.completadoEn ? true : false
+            value: historial,
+            name: `${idx} ${historial}`,
+            checked: false
         }
     });
 

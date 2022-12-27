@@ -4,7 +4,7 @@ const axios = require('axios')
 class Busquedas {
 
     historial = [];
-    archivoPath = './file/file.json';
+    archivoPath = './files/file.json';
 
     constructor() {
         this.leerArchivo()
@@ -95,7 +95,7 @@ class Busquedas {
         if (this.historial.includes(lugar.toLocaleLowerCase())){
 
 
-            const aux = this.historial.filter(i=> i.toLocaleLowerCase() !== lugar.toLocaleLowerCase())
+            const aux = this.historial.filter( i => i.toLocaleLowerCase() !== lugar.toLocaleLowerCase())
 
 
             aux.unshift(lugar.toLocaleLowerCase());
@@ -123,6 +123,7 @@ class Busquedas {
 
     }
 
+
     leerArchivo(){
 
         if(!fs.existsSync(this.archivoPath)) return;
@@ -133,6 +134,22 @@ class Busquedas {
         this.historial = data.historial;
     }
 
+    
+
+
+    async eliminarDelhistorial(lugares){
+
+        let aux = []
+        this.historial.forEach(e=>{
+            if (!lugares.includes(e)){
+                aux.push(e)
+            }
+        })
+
+        this.historial = aux;
+        this.guardarEnArchivo()
+
+    }
 
 
 }

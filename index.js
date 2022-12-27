@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { leerInput, inquirerMenu, pausa, listarLugares } = require("./helpers/inquirers");
+const { leerInput, inquirerMenu, pausa, listarLugares, mostrarListadoCheckList, confirmar } = require("./helpers/inquirers");
 const Busquedas = require("./models/Busquedas");
 
 const main = async () => {
@@ -85,6 +85,20 @@ const main = async () => {
                     const idx = `${i+1}.`.green
                     console.log(`${idx} ${lugar}`);
                 })
+                break;
+
+            case 3: 
+                const nombres = await mostrarListadoCheckList(busquedas.historial)
+                if(nombres.length !== 0){
+
+                    const ok = await confirmar('¿Esta seguro que quiere eliminar del historial lo anteriormente seleccionado?');
+
+                    if(ok){
+                        await busquedas.eliminarDelhistorial(nombres)
+                        console.log("Ha eliminado: ");
+                        nombres.forEach(nombre => console.log(('❌ - ' + nombre).red));
+                    }
+                }
                 break;
         }
 
