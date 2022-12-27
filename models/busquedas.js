@@ -1,18 +1,18 @@
 const axios = require('axios')
 
-class Busquedas{
+class Busquedas {
 
     historial = ['Tegucigalpa', 'Madrid', 'San Jose'];
 
-    constructor(){
-        
+    constructor() {
+
     }
 
-    get language(){
+    get language() {
         return 'es';
     }
 
-    get paramsMapBox(){
+    get paramsMapBox() {
         return {
             'access_token': process.env.MAPBOX_KEY,
             'limit': 5,
@@ -20,7 +20,7 @@ class Busquedas{
         }
     }
 
-    get paramsOpenWeather(){
+    get paramsOpenWeather() {
         return {
             'appid': process.env.OPEN_WEATHER_KEY,
             'units': 'metric',
@@ -28,18 +28,18 @@ class Busquedas{
         }
     }
 
-    async ciudades(lugar){
-        try{
+    async ciudades(lugar) {
+        try {
 
             const instance = axios.create({
-                baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${ lugar }.json`,
+                baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json`,
                 params: this.paramsMapBox,
                 language: 'es',
             })
 
             const resp = await instance.get();
 
-            return resp.data.features.map( e =>({
+            return resp.data.features.map(e => ({
                 id: e.id,
                 nombre: e.place_name,
                 short_code: e.properties.short_code,
@@ -47,7 +47,7 @@ class Busquedas{
                 lat: e.center[1],
             }))
 
-        }catch(error){
+        } catch (error) {
             console.log("error");
             console.log(error);
 
@@ -56,23 +56,23 @@ class Busquedas{
 
     }
 
-    async climaLugar(lat,lon){
+    async climaLugar(lat, lon) {
 
-        try{
+        try {
 
             const instance = axios.create({
                 baseURL: 'https://api.openweathermap.org/data/2.5/weather',
-                params: { ...this.paramsOpenWeather, lat,lon}
+                params: { ...this.paramsOpenWeather, lat, lon }
             })
 
             const resp = await instance.get();
 
-            console.log(resp.data);
+            //console.log(resp.data);
 
             return resp.data
 
 
-        }catch(error){
+        } catch (error) {
             console.log('error');
             console.log(error);
             return []

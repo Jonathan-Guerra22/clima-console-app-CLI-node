@@ -5,7 +5,7 @@ require('colors');
 
 const preguntas = [
     {
-        
+
         type: 'list',
         name: 'opcion',
         message: '¿Que desea hacer?',
@@ -27,9 +27,9 @@ const preguntas = [
     }
 ]
 
-const listarLugares = async(lugares) =>{
-    const choices = lugares.map( (lugar,i) => {
-        const idx = `${i+1}`.green
+const listarLugares = async (lugares) => {
+    const choices = lugares.map((lugar, i) => {
+        const idx = `${i + 1}`.green
         return {
             value: lugar.id,
             name: `${idx} ${lugar.nombre}`
@@ -51,15 +51,15 @@ const listarLugares = async(lugares) =>{
         }
     ]
 
-    const {id} = await inquirer.prompt(preguntas);
+    const { id } = await inquirer.prompt(preguntas);
     return id;
 }
 
 
-const mostrarListadoCheckList = async(tareas) => {
-    
-    const choices = tareas.map( (tarea,i) => {
-        const idx = `${i+1}`.green
+const mostrarListadoCheckList = async (tareas) => {
+
+    const choices = tareas.map((tarea, i) => {
+        const idx = `${i + 1}`.green
         return {
             value: tarea.id,
             name: `${idx} ${tarea.desc}`,
@@ -82,7 +82,7 @@ const mostrarListadoCheckList = async(tareas) => {
 
 
 
-const confirmar = async(message) => {
+const confirmar = async (message) => {
     const question = [
         {
             type: 'confirm',
@@ -91,12 +91,12 @@ const confirmar = async(message) => {
         }
     ];
 
-    const {ok} = await inquirer.prompt(question);
+    const { ok } = await inquirer.prompt(question);
     return ok;
 
 }
 
-const inquirerMenu = async() => {
+const inquirerMenu = async () => {
     console.clear();
     console.log('========================='.green);
     console.log('  Seleccione una opción'.blue);
@@ -114,7 +114,7 @@ const pausa = async () => {
         {
             type: 'input',
             name: 'enter',
-            message: `\nPresione ${ 'enter'.green } para continuar\n`
+            message: `\nPresione ${'enter'.green} para continuar\n`
         }
     ]
 
@@ -124,15 +124,15 @@ const pausa = async () => {
 }
 
 
-const leerInput = async (message) =>{
+const leerInput = async (message) => {
 
     const question = [
         {
             type: 'input',
             name: 'desc',
             message,
-            validate(value){
-                if( value.length === 0){
+            validate(value) {
+                if (value.length === 0) {
                     return 'Por favor ingrese un valor';
                 }
                 return true;
@@ -140,15 +140,15 @@ const leerInput = async (message) =>{
         }
     ];
 
-    const {desc} = await inquirer.prompt(question);
+    const { desc } = await inquirer.prompt(question);
 
-    return desc;   
+    return desc;
 }
 
 
 module.exports = {
     listarLugares,
-    
+
     inquirerMenu,
     pausa,
     leerInput,
